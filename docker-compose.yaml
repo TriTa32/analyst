@@ -32,7 +32,6 @@ services:
       - POSTGRES_USER=druid
       - POSTGRES_DB=druid
 
-
   # Druid Cordinator
   coordinator:
     image: apache/druid:31.0.1
@@ -140,6 +139,9 @@ services:
     volumes:
       - ./app_airflow/app/:/airflow/
     environment:
+      - AIRFLOW__CORE__EXECUTOR=CeleryExecutor
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://druid:FoolishPassword@postgres/druid
+      - AIRFLOW__CELERY__RESULT_BACKEND=db+postgresql://druid:FoolishPassword@postgres/druid
       - AIRFLOW_HOME=/airflow
       - AIRFLOW_UID=50000
       - AIRFLOW__CORE__LOAD_EXAMPLES=false
@@ -151,7 +153,7 @@ services:
       - AIRFLOW__API__ENABLE_EXPERIMENTAL_API=True
       - AIRFLOW__CORE__ENABLE_TEST_API=True
       # Additional providers
-      - _PIP_ADDITIONAL_REQUIREMENTS=${_PIP_ADDITIONAL_REQUIREMENTS:- apache-airflow-providers-docker apache-airflow-providers-apache-druid}
+      - _PIP_ADDITIONAL_REQUIREMENTS=apache-airflow-providers-docker apache-airflow-providers-apache-druid
     ports:
       - 3000:8080
     depends_on:

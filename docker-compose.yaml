@@ -151,7 +151,7 @@ services:
       - AIRFLOW__API__ENABLE_EXPERIMENTAL_API=True
       - AIRFLOW__CORE__ENABLE_TEST_API=True
       # Additional providers
-      - _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:- apache-airflow-providers-docker apache-airflow-providers-apache-druid}
+      - _PIP_ADDITIONAL_REQUIREMENTS=${_PIP_ADDITIONAL_REQUIREMENTS:- apache-airflow-providers-docker apache-airflow-providers-apache-druid}
     ports:
       - 3000:8080
     depends_on:

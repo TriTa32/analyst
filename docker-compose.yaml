@@ -37,7 +37,7 @@ services:
 
   # Druid Cordinator
   coordinator:
-    image: apache/druid
+    image: apache/druid:31.0.1
     container_name: coordinator
     restart: unless-stopped
     volumes:
@@ -55,7 +55,7 @@ services:
 
   # Druid Broker
   broker:
-    image: apache/druid
+    image: apache/druid:31.0.1
     container_name: broker
     restart: unless-stopped
     volumes:
@@ -73,7 +73,7 @@ services:
 
   # Druid Historical
   historical:
-    image: apache/druid
+    image: apache/druid:31.0.1
     container_name: historical
     restart: unless-stopped
     volumes:
@@ -92,7 +92,7 @@ services:
 
   # Druid middlemanager
   middlemanager:
-    image: apache/druid
+    image: apache/druid:31.0.1
     container_name: middlemanager
     volumes:
       - druid_shared:/opt/shared
@@ -111,7 +111,7 @@ services:
   
   # Druid router
   router:
-    image: apache/druid
+    image: apache/druid:31.0.1
     container_name: router
     restart: unless-stopped
     volumes:

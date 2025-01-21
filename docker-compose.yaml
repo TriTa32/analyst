@@ -140,8 +140,6 @@ services:
     image: apache/airflow:latest
     container_name: airflow
     restart: unless-stopped
-    depends_on:
-      - kafka
     volumes:
       - ./app_airflow/app/:/airflow/
     environment:
